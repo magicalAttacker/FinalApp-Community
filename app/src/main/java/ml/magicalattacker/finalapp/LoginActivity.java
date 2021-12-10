@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -41,12 +42,20 @@ public class LoginActivity extends AppCompatActivity {
         recyclerView.setVisibility(View.INVISIBLE);
     }
 
+    private void autoLogin(String username, String password) {
+        SharedPreferences preferences = getSharedPreferences("userinfo", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("username", username);
+        editor.putString("password", password);
+        editor.apply();
+    }
+
     public void login(View view) {
         String inputUsername = username.getText().toString();
         String inputPassword = password.getText().toString();
         if (!inputUsername.isEmpty() && !inputPassword.isEmpty() && isRegisted(inputUsername, inputPassword)) {
+            autoLogin(inputUsername, inputPassword);
             Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
-            //TODO 免登录逻辑
         } else if (!isRegisted(inputUsername, inputPassword)) {
             Toast.makeText(this, "账号或密码错误", Toast.LENGTH_SHORT).show();
         } else {
@@ -84,4 +93,5 @@ public class LoginActivity extends AppCompatActivity {
         }
         return false;
     }
+
 }

@@ -1,5 +1,6 @@
 package ml.magicalattacker.finalapp;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
