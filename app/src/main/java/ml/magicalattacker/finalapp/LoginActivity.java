@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             autoLogin(inputUsername, inputPassword);
             finish();
             Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
-        } else if (!isRegisted(inputUsername, inputPassword)) {
+        } else if (!isRegisted(inputUsername, inputPassword) && !inputUsername.isEmpty() && !inputPassword.isEmpty()) {
             Toast.makeText(this, "账号或密码错误", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "登录信息不完整", Toast.LENGTH_SHORT).show();
