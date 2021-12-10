@@ -1,6 +1,7 @@
 package ml.magicalattacker.finalapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -79,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             list.add(new UserEntry(usernameDB, passwordDB));
         }
         MyRecyclerAdapter adapter = new MyRecyclerAdapter(list);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
