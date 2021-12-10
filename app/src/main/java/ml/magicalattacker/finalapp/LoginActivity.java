@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         String inputPassword = password.getText().toString();
         if (!inputUsername.isEmpty() && !inputPassword.isEmpty() && isRegisted(inputUsername, inputPassword)) {
             autoLogin(inputUsername, inputPassword);
+            finish();
             Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
         } else if (!isRegisted(inputUsername, inputPassword)) {
             Toast.makeText(this, "账号或密码错误", Toast.LENGTH_SHORT).show();
