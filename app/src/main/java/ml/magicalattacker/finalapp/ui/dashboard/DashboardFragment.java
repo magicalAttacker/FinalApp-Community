@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import ml.magicalattacker.finalapp.databinding.FragmentDashboardBinding;
 
@@ -24,8 +26,9 @@ public class DashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final RecyclerView view = binding.recyclerView2;
+        view.setAdapter(dashboardViewModel.getAdapter());
+        view.setLayoutManager(new LinearLayoutManager(getActivity()));
         return root;
     }
 
