@@ -1,6 +1,10 @@
 package ml.magicalattacker.finalapp;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +17,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class CardViewRecyclerAdapter extends RecyclerView.Adapter<CardViewRecyclerAdapter.ViewHolder> {
+public class HomeRecyclerviewAdapter extends RecyclerView.Adapter<HomeRecyclerviewAdapter.ViewHolder> {
 
     private List<CraftItemEntry> localDataSet;
     private Context context;
@@ -45,7 +49,7 @@ public class CardViewRecyclerAdapter extends RecyclerView.Adapter<CardViewRecycl
      * @param dataSet String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public CardViewRecyclerAdapter(List<CraftItemEntry> dataSet, Context context) {
+    public HomeRecyclerviewAdapter(List<CraftItemEntry> dataSet, Context context) {
         localDataSet = dataSet;
         this.context = context;
     }
@@ -55,7 +59,7 @@ public class CardViewRecyclerAdapter extends RecyclerView.Adapter<CardViewRecycl
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.card_view_item, viewGroup, false);
+                .inflate(R.layout.goods_view_item, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -68,6 +72,12 @@ public class CardViewRecyclerAdapter extends RecyclerView.Adapter<CardViewRecycl
         // contents of the view with that element
         viewHolder.getTextView().setText(localDataSet.get(position).getInfo());
         Glide.with(context).load(localDataSet.get(position).getId()).into(viewHolder.getImageView());
+        viewHolder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, GoodsDetailsActivity.class);
+            intent.putExtra("data", localDataSet.get(position));
+            context.startActivity(intent,
+                    ActivityOptions.makeSceneTransitionAnimation((Activity) context).toBundle());
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
