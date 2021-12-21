@@ -14,6 +14,7 @@ public class SqlHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table user (userid integer primary key autoincrement, username text, password text)");
+        db.execSQL("create table cart (goodsid integer primary key autoincrement, goodsimage integer, goodsinfo text, goodsprice real, username text)");
     }
 
     @Override

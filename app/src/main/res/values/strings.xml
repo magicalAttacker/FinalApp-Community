@@ -9,4 +9,5 @@
     <string name="signOut">退出登录</string>
     <string name="changePassword">修改密码</string>
     <string name="destoryUser">销毁账号</string>
+    <string name="tip">单价为：</string>
 </resources>

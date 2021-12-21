@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,8 +16,8 @@ import java.util.List;
 
 public class CardViewRecyclerAdapter extends RecyclerView.Adapter<CardViewRecyclerAdapter.ViewHolder> {
 
-    private List<CraftItemEntry> localDataSet;
-    private Context context;
+    private final List<CraftItemEntry> localDataSet;
+    private final Context context;
 
     /**
      * Provide a reference to the type of views that you are using
@@ -25,18 +26,30 @@ public class CardViewRecyclerAdapter extends RecyclerView.Adapter<CardViewRecycl
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView info;
         private final ImageView imageView;
+        private final TextView price;
+        private final TextView num;
+        private final Button add;
+        private final Button mins;
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
             info = view.findViewById(R.id.info_text);
             imageView = view.findViewById(R.id.imageView);
+            price = view.findViewById(R.id.textView13);
+            num = view.findViewById(R.id.textView12);
+            add = view.findViewById(R.id.button10);
+            mins = view.findViewById(R.id.button11);
         }
 
         public TextView getTextView() {
             return info;
         }
         public ImageView getImageView() { return imageView; }
+        public TextView getPriceView() { return price; }
+        public TextView getNum() { return num; }
+        public Button getAdd() { return add; }
+        public Button getMins() { return mins; }
     }
 
     /**
@@ -68,6 +81,8 @@ public class CardViewRecyclerAdapter extends RecyclerView.Adapter<CardViewRecycl
         // contents of the view with that element
         viewHolder.getTextView().setText(localDataSet.get(position).getInfo());
         Glide.with(context).load(localDataSet.get(position).getId()).into(viewHolder.getImageView());
+        viewHolder.getPriceView().setText(String.format("%s%s", context.getString(R.string.tip), localDataSet.get(position).getPrice()));
+        viewHolder.getNum().setText("1");
     }
 
     // Return the size of your dataset (invoked by the layout manager)
