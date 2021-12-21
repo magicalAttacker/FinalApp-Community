@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         db = sqlHelper.getReadableDatabase();
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setVisibility(View.INVISIBLE);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
     private void autoLogin(String username, String password) {
@@ -80,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
             list.add(new UserEntry(usernameDB, passwordDB));
         }
         MyRecyclerAdapter adapter = new MyRecyclerAdapter(list);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);

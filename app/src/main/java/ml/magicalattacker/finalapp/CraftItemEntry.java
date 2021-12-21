@@ -7,14 +7,10 @@ public class CraftItemEntry implements Parcelable {
     private int id;
     private String info;
 
-    public CraftItemEntry(int id, String info) {
-        this.id = id;
-        this.info = info;
-    }
-
     protected CraftItemEntry(Parcel in) {
         id = in.readInt();
         info = in.readString();
+        price = in.readDouble();
     }
 
     public static final Creator<CraftItemEntry> CREATOR = new Creator<CraftItemEntry>() {
@@ -45,6 +41,22 @@ public class CraftItemEntry implements Parcelable {
         this.info = info;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    private double price;
+
+    public CraftItemEntry(int id, String info, double price) {
+        this.id = id;
+        this.info = info;
+        this.price = price;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -54,5 +66,6 @@ public class CraftItemEntry implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(info);
+        dest.writeDouble(price);
     }
 }

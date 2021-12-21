@@ -24,7 +24,7 @@ public class DashboardViewModel extends ViewModel {
     public void initList() {
         for (int i = 0; i < 10; i++) {
             String content = String.valueOf(i);
-            CraftItemEntry entry = new CraftItemEntry(R.drawable.icon, content);
+            CraftItemEntry entry = new CraftItemEntry(R.drawable.icon, content, 99.99);
             list.add(entry);
         }
     }

@@ -23,9 +23,4 @@ public class GoodsDetailsActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.textView10);
         textView.setText(entry.getInfo());
     }
-
-    public void addItem(View view) {
-        HomeViewModel.list.add(entry);
-        HomeViewModel.adapter.notifyDataSetChanged();
-    }
 }

@@ -14,8 +14,8 @@ import ml.magicalattacker.finalapp.R;
 
 public class HomeViewModel extends ViewModel {
 
-    public static HomeRecyclerviewAdapter adapter;
-    public static final List<CraftItemEntry> list = new ArrayList<>();
+    private final HomeRecyclerviewAdapter adapter;
+    private final List<CraftItemEntry> list = new ArrayList<>();
 
     public HomeViewModel() {
         initList();
@@ -25,7 +25,7 @@ public class HomeViewModel extends ViewModel {
     public void initList() {
         for (int i = 0; i < 10; i++) {
             String content = String.valueOf(i);
-            CraftItemEntry entry = new CraftItemEntry(R.drawable.icon, content);
+            CraftItemEntry entry = new CraftItemEntry(R.drawable.icon, content, 99.99);
             list.add(entry);
         }
     }
