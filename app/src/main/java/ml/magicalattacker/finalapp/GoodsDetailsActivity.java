@@ -1,8 +1,7 @@
 package ml.magicalattacker.finalapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import ml.magicalattacker.finalapp.ui.dashboard.DashboardFragment;
-import ml.magicalattacker.finalapp.ui.home.HomeFragment;
-import ml.magicalattacker.finalapp.ui.home.HomeViewModel;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class GoodsDetailsActivity extends AppCompatActivity {
     CraftItemEntry entry;
@@ -37,7 +34,18 @@ public class GoodsDetailsActivity extends AppCompatActivity {
     public void addCart(View view) {
         initDB();
         String username = getSharedPreferences("userinfo", 0).getString("username", "");
-        if (username.isEmpty()) return;
+        if (username.isEmpty()) {
+            Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Cursor cursor = db.query("cart", null, "username = ?", new String[]{ username }, null, null, null);
+        while (cursor.moveToNext()) {
+            String goodsInfo = cursor.getString(cursor.getColumnIndexOrThrow("goodsinfo"));
+            if (entry.getInfo().equals(goodsInfo)) {
+                Toast.makeText(this, "已经在购物车里了", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
         ContentValues values = new ContentValues();
         values.put("goodsimage", entry.getId());
         values.put("goodsinfo", entry.getInfo());

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import ml.magicalattacker.finalapp.CraftItemEntry;
 import ml.magicalattacker.finalapp.HomeRecyclerviewAdapter;
@@ -23,11 +24,18 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void initList() {
-        for (int i = 0; i < 10; i++) {
-            String content = String.valueOf(i);
-            CraftItemEntry entry = new CraftItemEntry(R.drawable.icon, content, 99.99);
-            list.add(entry);
-        }
+        CraftItemEntry entry0 = new CraftItemEntry(R.drawable.a, "iPhone13 Pro", 7999.99);
+        CraftItemEntry entry1 = new CraftItemEntry(R.drawable.b, "Mac mini", 5999.99);
+        CraftItemEntry entry2 = new CraftItemEntry(R.drawable.c, "Macbook Pro", 10999.99);
+        CraftItemEntry entry3 = new CraftItemEntry(R.drawable.d, "Freebuds 4", 599.99);
+        CraftItemEntry entry4 = new CraftItemEntry(R.drawable.e, "iPad Pro", 6999.99);
+        CraftItemEntry entry5 = new CraftItemEntry(R.drawable.f, "MatePad Pro", 5999.99);
+        list.add(entry0);
+        list.add(entry1);
+        list.add(entry2);
+        list.add(entry3);
+        list.add(entry4);
+        list.add(entry5);
     }
 
     public HomeRecyclerviewAdapter getAdapter() {

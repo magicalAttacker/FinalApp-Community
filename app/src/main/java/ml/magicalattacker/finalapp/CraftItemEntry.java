@@ -6,6 +6,7 @@ import android.os.Parcelable;
 public class CraftItemEntry implements Parcelable {
     private int id;
     private String info;
+    private double price;
 
     protected CraftItemEntry(Parcel in) {
         id = in.readInt();
@@ -48,8 +49,6 @@ public class CraftItemEntry implements Parcelable {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    private double price;
 
     public CraftItemEntry(int id, String info, double price) {
         this.id = id;
