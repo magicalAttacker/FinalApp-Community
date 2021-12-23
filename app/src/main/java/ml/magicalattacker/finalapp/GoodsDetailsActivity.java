@@ -1,5 +1,6 @@
 package ml.magicalattacker.finalapp;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,6 +16,7 @@ public class GoodsDetailsActivity extends AppCompatActivity {
     CraftItemEntry entry;
     SQLiteDatabase db;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,8 @@ public class GoodsDetailsActivity extends AppCompatActivity {
         imageView.setImageResource(entry.getId());
         TextView textView = findViewById(R.id.textView10);
         textView.setText(entry.getInfo());
+        TextView priceView = findViewById(R.id.price);
+        priceView.setText("售价：" + entry.getPrice());
     }
 
     public void initDB() {
