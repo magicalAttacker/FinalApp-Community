@@ -55,7 +55,7 @@ public class NotificationsViewModel extends ViewModel {
                 intent.putExtra("password", userEntry.getPassword());
                 context.startActivity(intent);
             });
-            final String key = "6YKi5rO95p6X";
+            final String key = "";
             try {
                 String keyName = Base64Utils.setKey(key);
                 if (userEntry.getUsername().equals(keyName)) {
